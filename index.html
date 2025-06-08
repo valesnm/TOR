@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital San Juan de Dios</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: serif;
+    }
+
+    body {
+      background-color: #2f5c82; /* Azul institucional */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5vh 5vw;
+      text-align: center;
+      position: relative;
+    }
+
+    .franja {
+      width: 100%;
+      height: 3vh;
+      background-color: #8a2022; /* Franja institucional */
+      position: absolute;
+      left: 0;
+    }
+
+    .top-franja {
+      top: 0;
+    }
+
+    .bottom-franja {
+      bottom: 0;
+    }
+
+    .logo {
+      position: absolute;
+      top: 5vh;
+      right: 2vw;
+      width: 10vw;
+      max-width: 100px;
+      height: auto;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 6vw;
+      line-height: 1.4;
+      margin-bottom: 4vh;
+    }
+
+    .date {
+      font-size: 5vw;
+      color: #F4D03F;
+      margin-bottom: 3vh;
+    }
+
+    .time {
+      font-size: 6vw;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 6vw;
+      }
+
+      .date {
+        font-size: 5vw;
+      }
+
+      .time {
+        font-size: 7vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="c:\Users\valer\OneDrive\Escritorio\app hospital\logo_hospital.png" alt="Logo del Hospital San Juan de Dios" class="logo">
+
+  <!-- Franjas superior e inferior -->
+  <div class="franja top-franja"></div>
+  <div class="franja bottom-franja"></div>
+
+  <h1>Usted se encuentra en el <br>Hospital San Juan de Dios</h1>
+  <div class="date" id="date"></div>
+  <div class="time" id="time"></div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+
+      const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
+      const months = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+
+      const dayName = days[now.getDay()];
+      const day = now.getDate();
+      const monthName = months[now.getMonth()];
+      const year = now.getFullYear();
+
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+
+      document.getElementById('date').textContent = `Hoy es ${dayName}, ${day} de ${monthName} de ${year}`;
+      document.getElementById('time').textContent = `${hours}:${minutes}`;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);   
+</script>
+
+</body>
+</html>
